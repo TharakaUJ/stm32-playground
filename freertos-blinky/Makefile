@@ -8,15 +8,18 @@ OBJCOPY = $(TOOLCHAIN)/arm-none-eabi-objcopy
 CFLAGS=-mcpu=cortex-m3 -mthumb -O2 -std=gnu11 -ffreestanding -nostdlib
 LDFLAGS=-T linker.ld -nostdlib -Wl,--gc-sections
 
-SRC = main.c startup.s \
-      FreeRTOS/Source/tasks.c \
-      FreeRTOS/Source/list.c \
-      FreeRTOS/Source/queue.c \
-      FreeRTOS/Source/timers.c \
-      FreeRTOS/Source/portable/GCC/ARM_CM3/port.c \
-      FreeRTOS/Source/portable/MemMang/heap_4.c
+SRC = main.c startup.s mem.c \
+      FreeRTOS/tasks.c \
+      FreeRTOS/list.c \
+      FreeRTOS/queue.c \
+      FreeRTOS/timers.c \
+      FreeRTOS/portable/GCC/ARM_CM3/port.c \
+      FreeRTOS/portable/MemMang/heap_4.c
 
-INCLUDES = -IFreeRTOS/include -IFreeRTOS/Source/include -IFreeRTOS/Source/portable/GCC/ARM_CM3
+INCLUDES = -I. \
+           -IFreeRTOS/include \
+           -IFreeRTOS/include \
+           -IFreeRTOS/portable/GCC/ARM_CM3
 
 all: main.bin
 

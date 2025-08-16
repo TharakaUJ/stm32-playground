@@ -13,7 +13,8 @@ g_pfnVectors:
 .section .text
 .global _start
 _start:
-    ldr sp, =_estack
+    ldr   r0, =_estack
+    mov   sp, r0
     bl main
 loop: b loop
 
