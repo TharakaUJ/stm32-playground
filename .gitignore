@@ -1,0 +1,3 @@
+*.zip
+*.tar.*
+gcc-arm-none-eabi-*
