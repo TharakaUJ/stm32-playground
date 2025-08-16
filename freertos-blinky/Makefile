@@ -1,5 +1,9 @@
-CC=arm-none-eabi-gcc
-OBJCOPY=arm-none-eabi-objcopy
+# Path to local toolchain
+TOOLCHAIN = $(CURDIR)/arm-none-eabi-gcc/bin
+
+CC = $(TOOLCHAIN)/arm-none-eabi-gcc
+OBJCOPY = $(TOOLCHAIN)/arm-none-eabi-objcopy
+
 
 CFLAGS=-mcpu=cortex-m3 -mthumb -O2 -std=gnu11 -ffreestanding -nostdlib
 LDFLAGS=-T linker.ld -nostdlib -Wl,--gc-sections
