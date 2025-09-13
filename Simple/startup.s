@@ -12,11 +12,11 @@ g_pfnVectors:
     .word 0                          // 0x20: Reserved
     .word 0                          // 0x24: Reserved
     .word 0                          // 0x28: Reserved
-    .word vPortSVCHandler            // 0x2C: SVCall handler (FreeRTOS)
+    .word SVC_Handler                // 0x2C: SVCall handler
     .word DebugMon_Handler           // 0x30: Debug monitor handler
     .word 0                          // 0x34: Reserved
-    .word xPortPendSVHandler         // 0x38: PendSV handler (FreeRTOS)
-    .word xPortSysTickHandler        // 0x3C: SysTick handler (FreeRTOS)
+    .word PendSV_Handler             // 0x38: PendSV handler
+    .word SysTick_Handler            // 0x3C: SysTick handler
 
 .section .text
 .global _start
@@ -26,17 +26,13 @@ _start:
     bl main
 loop: b loop
 
+// Default exception handlers
 NMI_Handler:       b .
 HardFault_Handler: b .
 MemManage_Handler: b .
 BusFault_Handler:  b .
 UsageFault_Handler: b .
+SVC_Handler:       b .
 DebugMon_Handler:  b .
-
-// Weak aliases for FreeRTOS handlers (in case they're not defined)
-.weak vPortSVCHandler
-.weak xPortPendSVHandler  
-.weak xPortSysTickHandler
-vPortSVCHandler:     b .
-xPortPendSVHandler:  b .
-xPortSysTickHandler: b .
+PendSV_Handler:    b .
+SysTick_Handler:   b .

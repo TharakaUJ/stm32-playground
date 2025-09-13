@@ -3,3 +3,6 @@
 gcc-arm-none-eabi-*
 arm-none-eabi-*
 FreeRTOS
+
+*.bin
+*.elf
